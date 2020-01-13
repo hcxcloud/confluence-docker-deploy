@@ -48,15 +48,7 @@ cd /opt/confluence-docker-deploy/
 docker-compose up -d
 ```
 
-浏览器输入你的主机 ip:8090 进入 Web 界面，Next 到数据库配置界面。
-
-数据库连接配置填写如下:
-- 数据库类型: MySQL
-- 主机: database
-- 端口: 3306
-- 数据库: confluence
-- 用户名: confluence
-- 密码: confluence@123
+浏览器输入你的主机 ip:8090 进入 Web 界面
 
 **破解**
 - -m: 邮箱
@@ -68,7 +60,20 @@ docker-compose up -d
 ```bash
 docker exec confluence bash -c "java -jar /opt/atlassian-agent.jar -m test@test.com -n test -p conf -o http://192.168.1.100:8090/ -s BQ1E-VJE3-GM70-3NM0"
 ```
+
 将输出的许可证粘贴至 Web 界面即可
+
+Next 到数据库配置界面
+
+数据库连接配置填写如下:
+- 数据库类型: MySQL
+- 主机: database
+- 端口: 3306
+- 数据库: confluence
+- 用户名: confluence
+- 密码: confluence@123
+
+
 
 最后
 
