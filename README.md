@@ -30,7 +30,7 @@ docker-compose --version
 
 
 
-# JIRA 部署
+# Confluence 部署
 Git 安装
 ```bash
 yum install -y git
