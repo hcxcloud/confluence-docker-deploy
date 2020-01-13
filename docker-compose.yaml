@@ -1,0 +1,38 @@
+version: '3'
+services:
+  confluence:
+    container_name: confluence
+    user: root
+    image: teamatldocker/confluence:7.2.0
+    restart: always
+    ports:
+      - "8090:8090"
+      - "8091:8091"
+    volumes:
+      - /data/confluence:/var/atlassian/confluence
+      - ./atlassian-agent.jar:/opt/atlassian-agent.jar
+    depends_on:
+      - mysql
+    environment:
+      JVM_MINIMUM_MEMORY: 1024m
+      JVM_MAXIMUM_MEMORY: 4096m
+      JAVA_OPTS: -javaagent:/opt/atlassian-agent.jar
+    links: 
+      - mysql:database
+
+  mysql:
+    container_name: confluence-mysql
+    image: mysql:5.7.20
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - /data/mysql/data:/var/lib/mysql
+      - ./mysql.cnf:/etc/mysql/conf.d/mysql.cnf
+    environment:
+      MYSQL_ROOT_PASSWORD: root@123
+      MYSQL_DATABASE: confluence
+      MYSQL_USER: confluence
+      MYSQL_PASSWORD: confluence@123
+    labels:
+      mysql.version: 5.7.20
